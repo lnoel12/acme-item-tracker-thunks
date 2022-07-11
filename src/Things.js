@@ -2,6 +2,7 @@ import React from 'react';
 import ThingForm from './ThingForm';
 import { connect } from 'react-redux';
 import { deleteThing, updateThing } from './store';
+import axios from 'axios';
 
 const Things = ({ things, users, deleteThing, increment, updateThing })=> {
   return (
