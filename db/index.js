@@ -1,11 +1,15 @@
 const Sequelize = require('sequelize');
 const conn = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/the_acme_item_tracker_db');
 
-const { STRING, INTEGER } = Sequelize;
+const { VIRTUAL, STRING, INTEGER } = Sequelize;
 
 const User = conn.define('user', {
   name: {
     type: STRING 
+  },
+  ranking: {
+    type: INTEGER,
+    defaultValue: 5
   }
 });
 
