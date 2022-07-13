@@ -37,6 +37,16 @@ app.put('/api/things/:id', async(req, res, next)=> {
     next(ex);
   }
 });
+app.put('/api/users/:id', async(req, res, next)=> {
+  try {
+    const user = await User.findByPk(req.params.id);
+    await user.update(req.body);
+    res.send(user);
+  }
+  catch(ex){
+    next(ex);
+  }
+});
 
 app.delete('/api/users/:id', async(req, res, next)=> {
   try {
