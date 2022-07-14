@@ -86,9 +86,16 @@ const removeThingFromUser = (user)=>{
   dispatch({ type: 'DELETE_USER', user});
     };
   };
+  const userIncr = (user)=>{
+    return async (dispatch)=>{
+      user = (await axios.put(`/api/users/${user.id}`, user)).data 
+      dispatch({type:'UPDATE_USER', user})
+  
+    };
+  };
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 
-export { deleteThing, updateThing , createUser};
+export { deleteThing, updateThing , createUser, deleteUser , removeThingFromUser , userIncr };
 
 export default store;
 

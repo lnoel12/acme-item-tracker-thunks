@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { user } from 'pg/lib/defaults';
-import { createUser,   } from './store';
+import { createUser, removeThingFromUser, deleteUser, userIncr  } from './store';
 
 
 const Users = ({ users, createUser, deleteUser, things, removeThingFromUser })=> {
@@ -53,8 +53,7 @@ const mapDispatch = (dispatch)=> {
   return {
     userIncr: async(user, dir)=>{
       user = {... user, ranking: user.ranking +dir};
-      user = (await axios.put(`/api/users/${user.id}`, user)).data 
-      dispatch({type:'UPDATE_USER', user})
+      dispatch(userIncr(user));
  
     },
     createUser: async()=> {
